@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 /**
  * 商品SKU
- * @author : yichen
+ * @author : kenny
  * @since : 2022/1/22
  **/
 public class ProductSkuDO {

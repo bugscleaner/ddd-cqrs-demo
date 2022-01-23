@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 /**
- * @author : yichen
+ * @author : kenny
  * @since : 2022/1/23
  **/
 public class XmlWriter<T> extends XMLModel{

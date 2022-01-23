@@ -1,7 +1,7 @@
 package com.cqrs.demo.utils;
 
 /**
- * @author : yichen
+ * @author : kenny
  * @since : 2022/1/23
  **/
 public class StringUtil {

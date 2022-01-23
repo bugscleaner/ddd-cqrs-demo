@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * 商品服务实现
- * @Author: yichen
+ * @Author: kenny
  * @Date: 2022/1/19 8:33 下午
  */
 public class ProductServiceImpl implements ProductService{

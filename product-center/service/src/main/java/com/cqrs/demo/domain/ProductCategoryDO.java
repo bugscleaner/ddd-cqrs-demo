@@ -2,7 +2,7 @@ package com.cqrs.demo.domain;
 
 /**
  * 商品分类
- * @author : yichen
+ * @author : kenny
  * @since : 2022/1/23
  **/
 public class ProductCategoryDO {

@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * 商品服务 - 对外暴露
- * @Author: yichen
+ * @Author: kenny
  * @Date: 2022/1/19 8:31
  */
 public interface ProductService {

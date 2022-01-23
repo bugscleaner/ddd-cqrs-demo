@@ -5,7 +5,7 @@ import com.cqrs.demo.domain.ProductDO;
 import java.util.List;
 
 /**
- * @Author: yichen
+ * @Author: kenny
  * @Date: 2022/1/19 8:41 下午
  */
 public class ProductRepository extends XMLRepository<ProductDO>{

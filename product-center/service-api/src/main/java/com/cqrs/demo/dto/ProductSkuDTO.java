@@ -3,7 +3,7 @@ package com.cqrs.demo.dto;
 import java.math.BigDecimal;
 
 /**
- * @author : yichen
+ * @author : kenny
  * @since : 2022/1/23
  **/
 public class ProductSkuDTO {

@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * 简易 - XML持久层
- * @author : yichen
+ * @author : kenny
  * @since : 2022/1/23
  **/
 public abstract class XMLRepository<T> implements IRepository<T>{

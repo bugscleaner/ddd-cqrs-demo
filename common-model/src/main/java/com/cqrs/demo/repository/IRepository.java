@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * 数据访问层接口定义
- * @Author: yichen
+ * @Author: kenny
  * @Date: 2022/1/19 8:42 下午
  */
 public interface IRepository<T> {

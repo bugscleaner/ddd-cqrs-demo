@@ -1,7 +1,7 @@
 package com.cqrs.demo.domain;
 
 /**
- * @Author: yichen
+ * @Author: kenny
  * @Date: 2022/1/19 8:39 下午
  */
 public class ProductDO {

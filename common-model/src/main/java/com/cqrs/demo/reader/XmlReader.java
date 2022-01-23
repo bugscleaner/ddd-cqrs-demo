@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 /**
  * 读取resources下面repository下的数据
- * @author : yichen
+ * @author : kenny
  * @since : 2022/1/19
  **/
 public class XmlReader<T> extends XMLModel {

@@ -8,7 +8,7 @@ import org.dom4j.io.SAXReader;
 import java.io.File;
 
 /**
- * @author : yichen
+ * @author : kenny
  * @since : 2022/1/23
  **/
 public abstract class XMLModel {
