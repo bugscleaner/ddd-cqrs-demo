@@ -1,11 +1,11 @@
 <?xml version="1.0" ?>
 <repository ref ="com.cqrs.demo.domain.ProductDO" >
     <fields>
-        <field id="id" ref="java.lang.Long"/>
-        <field id="category_id" ref="java.lang.Long"/>
-        <field id="item_title" ref="java.lang.Long"/>
-        <field id="channel" ref="java.lang.Integer"/>
-        <field id="status" ref="java.lang.Integer"/>
+        <field id="id"/>
+        <field id="category_id"/>
+        <field id="item_title"/>
+        <field id="channel"/>
+        <field id="status"/>
     </fields>
     <rows>
         <row>

@@ -8,6 +8,7 @@ import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -18,12 +19,12 @@ import java.util.logging.Logger;
  * @author : kenny
  * @since : 2022/1/19
  **/
-public class XmlReader<T> extends XMLModel {
+public class XmlReader extends XMLModel {
     private Logger logger = Logger.getLogger(XmlReader.class.getName());
 
     private XmlReader(){}
 
-    public List<T> makeToRepository(String fileUrl) {
+    public <T> List<T> makeToRepository(String fileUrl) {
         Element root = super.checkXmlDefThenGetRoot(new File(XmlReader.class.getResource("/").getPath() + fileUrl));
         Element fields = root.element("fields");
 
@@ -81,6 +82,7 @@ public class XmlReader<T> extends XMLModel {
                     this.setFieldValue(obj, field, method, subRow);
                     idx++;
                 }
+
                 result.add((T) obj);
             } catch (InstantiationException | IllegalAccessException | NoSuchFieldException | InvocationTargetException | NoSuchMethodException e) {
                 e.printStackTrace();
@@ -163,6 +165,10 @@ public class XmlReader<T> extends XMLModel {
 
         if (toType == byte.class) {
             return Byte.valueOf(fromValue).byteValue();
+        }
+
+        if (toType == BigDecimal.class) {
+            return new BigDecimal(fromValue);
         }
 
         throw new IllegalArgumentException("Can't cast [" + fromValue + "] to " + toType);

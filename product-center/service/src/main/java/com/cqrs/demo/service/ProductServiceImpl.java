@@ -1,12 +1,17 @@
 package com.cqrs.demo.service;
 
 import com.cqrs.demo.domain.ProductDO;
+import com.cqrs.demo.domain.ProductSkuDO;
 import com.cqrs.demo.dto.ProductDTO;
+import com.cqrs.demo.dto.ProductSkuDTO;
 import com.cqrs.demo.repository.ProductRepository;
+import com.cqrs.demo.repository.ProductSkuRepository;
+import com.cqrs.demo.utils.JsonUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 商品服务实现
@@ -20,12 +25,18 @@ public class ProductServiceImpl implements ProductService{
 
     }
 
+    /**
+     * 只提供getByIds接口将商品信息透露出去
+     * @param itemIds
+     * @return
+     */
     @Override
     public List<ProductDTO> getByIds(List<Long> itemIds) {
         ProductRepository productRepository = new ProductRepository();
-        ProductDO productDO = new ProductDO();
-        productRepository.save(productDO);
+        ProductSkuRepository skuRepository = new ProductSkuRepository();
+
         List<ProductDO> doList = productRepository.findAll();
+        List<ProductSkuDO> skuDOList = skuRepository.findAll();
         List<ProductDTO> dtoList = new ArrayList<>();
         for (ProductDO ent : doList){
             ProductDTO dto = new ProductDTO();
@@ -35,6 +46,18 @@ public class ProductServiceImpl implements ProductService{
             dto.setId(ent.getId());
             dto.setCategoryId(ent.getCategoryId());
             dto.setChannel(ent.getChannel());
+
+            List<ProductSkuDO> skuList = skuDOList.stream().filter(i -> i.getItemId().equals(ent.getId())).collect(Collectors.toList());
+            List<ProductSkuDTO> skuDTOList = new ArrayList<>();
+            for (ProductSkuDO sku : skuList){
+                ProductSkuDTO skuDTO = new ProductSkuDTO();
+                skuDTO.setId(sku.getId());
+                skuDTO.setItemId(sku.getItemId());
+                skuDTO.setPrice(sku.getPrice());
+                skuDTOList.add(skuDTO);
+            }
+
+            dto.setSkuDTOList(skuDTOList);
             dtoList.add(dto);
         }
         return dtoList;
@@ -43,6 +66,6 @@ public class ProductServiceImpl implements ProductService{
     public static void main(String[] args) {
         ProductServiceImpl productService = new ProductServiceImpl();
         List<ProductDTO> list = productService.getByIds(Arrays.asList(1L, 200L));
-        System.out.println(list);
+        System.out.println(JsonUtil.parseToJson(list));
     }
 }

@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  * @author : kenny
  * @since : 2022/1/23
  **/
-public class XmlWriter<T> extends XMLModel{
+public class XmlWriter extends XMLModel{
     private Logger logger = Logger.getLogger(XmlWriter.class.getName());
 
     private XmlWriter(){}

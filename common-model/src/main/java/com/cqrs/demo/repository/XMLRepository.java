@@ -13,8 +13,13 @@ import java.util.List;
  * @since : 2022/1/23
  **/
 public abstract class XMLRepository<T> implements IRepository<T>{
+
     private String repoUrl;
-    private List<T> list;
+
+    /**
+     * 当前持久层数据
+     */
+    private List<T> repoList;
 
     /**
      * 构造器- 加载数据
@@ -22,25 +27,25 @@ public abstract class XMLRepository<T> implements IRepository<T>{
      */
     public XMLRepository(String url){
         this.repoUrl = url;
-        list = XmlReader.getInstance().makeToRepository(url);
-        assert list != null;
+        repoList = XmlReader.getInstance().makeToRepository(url);
+        assert repoList != null;
     }
 
     @Override
     public void save(T entity) {
         assert entity != null;
-        list.add(entity);
+        repoList.add(entity);
     }
 
     @Override
     public void deleteById(Long id) {
-        for (T t : list){
+        for (T t : repoList){
             Class<?> clz = t.getClass();
             try {
                 Method method = clz.getMethod("getId");
                 Object val = method.invoke(t);
                 if (id.equals(val)){
-                    list.remove(t);
+                    repoList.remove(t);
                 }
             } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
                 e.printStackTrace();
@@ -50,7 +55,7 @@ public abstract class XMLRepository<T> implements IRepository<T>{
 
     @Override
     public T findById(Long id) {
-        for (T t : list){
+        for (T t : repoList){
             Class<?> clz = t.getClass();
             try {
                 Method method = clz.getMethod("getId");
@@ -67,12 +72,12 @@ public abstract class XMLRepository<T> implements IRepository<T>{
 
     @Override
     public List<T> findAll() {
-        return list;
+        return repoList;
     }
 
     @Override
     public void flush() {
         XmlWriter xmlWriter = XmlWriter.getInstance();
-        xmlWriter.writer(list, repoUrl);
+        xmlWriter.writer(repoList, repoUrl);
     }
 }
