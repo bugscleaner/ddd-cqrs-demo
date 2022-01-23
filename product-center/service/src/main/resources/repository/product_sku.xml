@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<repository ref ="com.cqrs.demo.domain.ProductSkuDO" >
+    <fields>
+        <field id="id" ref="java.lang.Long"/>
+        <field id="item_id" ref="java.lang.Long"/>
+        <field id="price" ref="java.lang.Long"/>
+    </fields>
+    <rows>
+        <row>
+            <value>1</value>
+            <value>1</value>
+            <value>100.0</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>1</value>
+            <value>200.0</value>
+        </row>
+    </rows>
+</repository>
+
+

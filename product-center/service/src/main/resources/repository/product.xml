@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<repository ref ="com.cqrs.demo.domain.ProductDO" >
+    <fields>
+        <field id="id" ref="java.lang.Long"/>
+        <field id="category_id" ref="java.lang.Long"/>
+        <field id="item_title" ref="java.lang.Long"/>
+        <field id="channel" ref="java.lang.Integer"/>
+        <field id="status" ref="java.lang.Integer"/>
+    </fields>
+    <rows>
+        <row>
+            <value>1</value>
+            <value>100</value>
+            <value>热销商品</value>
+            <value>999</value>
+            <value>1</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>100</value>
+            <value>低价商品</value>
+            <value>999</value>
+            <value>1</value>
+        </row>
+    </rows>
+</repository>
+
+
