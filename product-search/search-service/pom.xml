@@ -3,19 +3,27 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>ddd-cqrs-demo</artifactId>
+        <artifactId>product-search</artifactId>
         <groupId>com.cqrs.demo</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>product-search</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>search-service</module>
-        <module>search-api</module>
-        <module>product-search-api</module>
-    </modules>
+    <artifactId>search-service</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>com.cqrs.demo</groupId>
+            <artifactId>product-search-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.cqrs.demo</groupId>
+            <artifactId>common-model</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

@@ -34,6 +34,25 @@ public abstract class XMLRepository<T> implements IRepository<T>{
     @Override
     public void save(T entity) {
         assert entity != null;
+        int maxId = repoList.stream().mapToInt(i -> {
+            Class<?> clz = i.getClass();
+            try {
+                Method method = clz.getMethod("getId");
+                long val = (long) method.invoke(i);
+                return (int) val;
+            } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
+            return 0;
+        }).max().getAsInt();
+
+        try {
+            Method method = entity.getClass().getMethod("setId", Long.class);
+            method.invoke(entity, (long) (maxId + 1));
+        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
         repoList.add(entity);
     }
 

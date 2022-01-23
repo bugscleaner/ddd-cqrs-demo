@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 /**
@@ -25,7 +26,7 @@ public class XmlReader extends XMLModel {
     private XmlReader(){}
 
     public <T> List<T> makeToRepository(String fileUrl) {
-        Element root = super.checkXmlDefThenGetRoot(new File(XmlReader.class.getResource("/").getPath() + fileUrl));
+        Element root = super.checkXmlDefThenGetRoot(new File(Objects.requireNonNull(XmlReader.class.getResource("/")).getPath() + fileUrl));
         Element fields = root.element("fields");
 
         String clzRef = root.attribute("ref").getValue();

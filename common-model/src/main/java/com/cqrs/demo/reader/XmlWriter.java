@@ -12,6 +12,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 /**
@@ -47,6 +48,7 @@ public class XmlWriter extends XMLModel{
             fieldNameList.add(fieldName);
         }
 
+        rows.remove(rows.element("row"));
         for (T t : list){
             Element newRow = rows.addElement("row");
             for (String fieldName : fieldNameList){
@@ -68,14 +70,12 @@ public class XmlWriter extends XMLModel{
             }
         }
 
-        FileOutputStream fis;
-        try {
-            fis = new FileOutputStream(fileUrl);
+        try (FileOutputStream fis = new FileOutputStream(Objects.requireNonNull(XmlWriter.class.getResource("/")).getPath() + fileUrl)){
             OutputFormat out = OutputFormat.createPrettyPrint();
             out.setEncoding("utf-8");
             XMLWriter writer = new XMLWriter(fis,out);
             writer.write(root);
-        } catch (IOException e) {
+        }catch (IOException e) {
             e.printStackTrace();
         }
     }

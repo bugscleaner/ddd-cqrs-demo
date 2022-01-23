@@ -9,7 +9,7 @@ import java.util.List;
  * @Author: kenny
  * @Date: 2022/1/19 8:31
  */
-public interface ProductService {
+public interface  ProductService {
 
     /**
      * 新增商品

@@ -6,10 +6,8 @@ import com.cqrs.demo.dto.ProductDTO;
 import com.cqrs.demo.dto.ProductSkuDTO;
 import com.cqrs.demo.repository.ProductRepository;
 import com.cqrs.demo.repository.ProductSkuRepository;
-import com.cqrs.demo.utils.JsonUtil;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,9 +18,21 @@ import java.util.stream.Collectors;
  */
 public class ProductServiceImpl implements ProductService{
 
+    /**
+     * 新增商品
+     * @param productDTO
+     */
     @Override
     public void add(ProductDTO productDTO) {
+        ProductRepository productRepository = new ProductRepository();
+        ProductDO productDO = new ProductDO();
+        productDO.setCategoryId(productDTO.getCategoryId());
+        productDO.setChannel(productDTO.getChannel());
+        productDO.setItemTitle(productDTO.getItemTitle());
+        productDO.setStatus(1);
 
+        productRepository.save(productDO);
+        productRepository.flush();
     }
 
     /**
@@ -61,11 +71,5 @@ public class ProductServiceImpl implements ProductService{
             dtoList.add(dto);
         }
         return dtoList;
-    }
-
-    public static void main(String[] args) {
-        ProductServiceImpl productService = new ProductServiceImpl();
-        List<ProductDTO> list = productService.getByIds(Arrays.asList(1L, 200L));
-        System.out.println(JsonUtil.parseToJson(list));
     }
 }
